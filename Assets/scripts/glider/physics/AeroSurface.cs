@@ -9,7 +9,6 @@ public class AeroSurface : MonoBehaviour
     public bool IsControlSurface;
     public ControlInputType InputType;
     public float InputMultiplyer = 1;
-    public AircraftPhysics aircraft;
     public float maxAngle = 50;
 
     private float flapAngle;

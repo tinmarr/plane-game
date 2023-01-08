@@ -10,10 +10,14 @@ public class AircraftPhysics : MonoBehaviour
 
     public List<AeroSurface> aerodynamicSurfaces = null;
     List<AeroSurface> controlSurfaces = new List<AeroSurface>();
+    WheelCollider[] wheels = null;
 
-    public float dragAmount = 100;
-    public float thrust;
+    public float maxThrust = 10000;
+    float thrust;
+    float brakePercent;
+    public float brakeTorque = 100;
     float pitch, yaw, roll;
+    bool flap = false;
 
     Vector3 wind = Vector3.zero;
     Rigidbody rb;
@@ -31,6 +35,12 @@ public class AircraftPhysics : MonoBehaviour
                 controlSurfaces.Add(aerodynamicSurfaces[i]);
             }
         }
+        wheels = GetComponentsInChildren<WheelCollider>();
+    }
+
+    private void Start()
+    {
+        input.actions.FindAction("flap").performed += _ => flap = !flap;
     }
 
     private void Update()
@@ -42,7 +52,8 @@ public class AircraftPhysics : MonoBehaviour
             roll = pitchRoll.x;
             pitch = pitchRoll.y;
             yaw = input.actions.FindAction("yaw").ReadValue<float>();
-            thrust = input.actions.FindAction("thrust").ReadValue<float>() * 10000;
+            thrust = input.actions.FindAction("thrust").ReadValue<float>() * maxThrust;
+            brakePercent = input.actions.FindAction("brake").ReadValue<float>();
         }
         else
         {
@@ -50,6 +61,7 @@ public class AircraftPhysics : MonoBehaviour
             pitch = 0;
             yaw = 0;
             thrust = 0;
+            brakePercent = 0;
         }
 
         foreach (AeroSurface controlSurface in controlSurfaces)
@@ -65,7 +77,16 @@ public class AircraftPhysics : MonoBehaviour
                 case ControlInputType.Yaw:
                     controlSurface.SetFlapAngle(yaw * controlSurface.maxAngle);
                     break;
+                case ControlInputType.Flap:
+                    controlSurface.SetFlapAngle(flap ? controlSurface.maxAngle : 0);
+                    break;
             }
+        }
+
+        foreach (WheelCollider wheel in wheels)
+        {
+            wheel.brakeTorque = brakePercent * brakeTorque;
+            wheel.motorTorque = 0.1f;
         }
     }
 

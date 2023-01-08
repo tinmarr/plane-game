@@ -8,7 +8,6 @@ public class AeroSurfaceEditor : Editor
     SerializedProperty isControlSurface;
     SerializedProperty inputType;
     SerializedProperty inputMultiplyer;
-    SerializedProperty aircraft;
     AeroSurface surface;
 
     private void OnEnable()
@@ -17,7 +16,6 @@ public class AeroSurfaceEditor : Editor
         isControlSurface = serializedObject.FindProperty("IsControlSurface");
         inputType = serializedObject.FindProperty("InputType");
         inputMultiplyer = serializedObject.FindProperty("InputMultiplyer");
-        aircraft = serializedObject.FindProperty("aircraft");
         surface = target as AeroSurface;
     }
 
@@ -31,7 +29,6 @@ public class AeroSurfaceEditor : Editor
             EditorGUILayout.PropertyField(inputType);
             EditorGUILayout.PropertyField(inputMultiplyer);
         }
-        EditorGUILayout.PropertyField(aircraft);
         serializedObject.ApplyModifiedProperties();
     }
 }
