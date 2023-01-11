@@ -8,6 +8,7 @@ public class AeroSurfaceEditor : Editor
     SerializedProperty isControlSurface;
     SerializedProperty inputType;
     SerializedProperty inputMultiplyer;
+    SerializedProperty maxAngle;
     AeroSurface surface;
 
     private void OnEnable()
@@ -16,6 +17,7 @@ public class AeroSurfaceEditor : Editor
         isControlSurface = serializedObject.FindProperty("IsControlSurface");
         inputType = serializedObject.FindProperty("InputType");
         inputMultiplyer = serializedObject.FindProperty("InputMultiplyer");
+        maxAngle = serializedObject.FindProperty("maxAngle");
         surface = target as AeroSurface;
     }
 
@@ -28,6 +30,7 @@ public class AeroSurfaceEditor : Editor
         {
             EditorGUILayout.PropertyField(inputType);
             EditorGUILayout.PropertyField(inputMultiplyer);
+            EditorGUILayout.PropertyField(maxAngle);
         }
         serializedObject.ApplyModifiedProperties();
     }

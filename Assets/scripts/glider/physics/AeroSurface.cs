@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public enum ControlInputType { Pitch, Yaw, Roll, Flap }
+public enum ControlInputType { Pitch, Yaw, Roll, Flap, Brake }
 
 public class AeroSurface : MonoBehaviour
 {
@@ -11,12 +11,18 @@ public class AeroSurface : MonoBehaviour
     public float InputMultiplyer = 1;
     public float maxAngle = 50;
 
-    private float flapAngle;
+    float flapAngle;
 
+    /// <summary>
+    /// Sets the angle of the flap in degrees. 
+    /// </summary>
     public void SetFlapAngle(float angle)
     {
-        flapAngle = Mathf.Clamp(angle * InputMultiplyer, -Mathf.Deg2Rad * maxAngle, Mathf.Deg2Rad * maxAngle);
+        flapAngle = Mathf.Clamp(angle * Mathf.Deg2Rad * InputMultiplyer, -Mathf.Deg2Rad * maxAngle, Mathf.Deg2Rad * maxAngle);
     }
+
+
+    public float GetFlapAngle() => flapAngle * Mathf.Rad2Deg;
 
     public BiVector3 CalculateForces(Vector3 worldAirVelocity, float airDensity, Vector3 relativePosition)
     {
@@ -216,10 +222,10 @@ public class AeroSurface : MonoBehaviour
         return Mathf.Clamp01(1 - 0.5f * (flapFraction - 0.1f) / 0.3f);
     }
 
+
 #if UNITY_EDITOR
     // For gizmos drawing.
     public AeroSurfaceConfig Config => config;
-    public float GetFlapAngle() => flapAngle;
     public Vector3 CurrentLift { get; private set; }
     public Vector3 CurrentDrag { get; private set; }
     public Vector3 CurrentTorque { get; private set; }

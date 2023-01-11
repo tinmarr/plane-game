@@ -59,7 +59,7 @@ public static class AircraftGizmos
             Gizmos.matrix = surf.transform.localToWorldMatrix;
             Gizmos.DrawCube(-Vector3.right * 0.25f * surf.Config.chord, new Vector3(surf.Config.chord, 0.1f, surf.Config.span));
 
-            DrawSurface(surf.transform, surf.Config, surf.GetFlapAngle(), surf.IsAtStall);
+            DrawSurface(surf.transform, surf.Config, surf.GetFlapAngle() * Mathf.Deg2Rad, surf.IsAtStall);
         }
 
         if (settings.showForces)

@@ -39,7 +39,7 @@
                     "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "flap",
@@ -55,7 +55,7 @@
                 {
                     "name": "WASD",
                     "id": "2b08db6c-0b4e-48a7-9721-181a4baf71a5",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -121,7 +121,7 @@
                 {
                     "name": "Arrow Keys",
                     "id": "88eacfab-c3a0-4806-ab07-45ace53a5631",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -267,6 +267,17 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
+                    "groups": "keyboard",
+                    "action": "thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d8b36c6-5c8e-49ee-8e56-5dcae6dd1daa",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
                     "groups": "",
                     "action": "thrust",
                     "isComposite": false,
@@ -279,6 +290,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "keyboard",
+                    "action": "flap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee7827a0-525e-47ec-8e57-4b49ee90cb6d",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "flap",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -11,6 +11,7 @@ public class AeroSurfaceConfig : ScriptableObject
     public float stallAngleHigh = 15;
     public float stallAngleLow = -15;
     public float chord = 1;
+    [Range(0, 1)]
     public float flapFraction = 0;
     public float span = 1;
     public bool autoAspectRatio = true;
@@ -18,8 +19,8 @@ public class AeroSurfaceConfig : ScriptableObject
 
     private void OnValidate()
     {
-        if (flapFraction > 0.4f)
-            flapFraction = 0.4f;
+        if (flapFraction > 1f)
+            flapFraction = 1f;
         if (flapFraction < 0)
             flapFraction = 0;
 
