@@ -273,7 +273,7 @@
                 {
                     "name": "",
                     "id": "e895747b-9a88-42a4-8dde-48af13b0dd80",
-                    "path": "<Keyboard>/leftBracket",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "keyboard",
@@ -317,7 +317,7 @@
                 {
                     "name": "",
                     "id": "285d982d-1b49-484f-9dab-72bcd3bd2b26",
-                    "path": "<Keyboard>/rightBracket",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "keyboard",

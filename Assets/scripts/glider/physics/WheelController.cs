@@ -46,9 +46,7 @@ public class WheelController : MonoBehaviour
         wheel.brakeTorque = brakePercent * brakeTorque;
 
         if (plane.thrust > 0)
-        {
             wheel.motorTorque = 1;
-        }
         if (isSteerable)
             wheel.steerAngle = steerAngle;
     }
