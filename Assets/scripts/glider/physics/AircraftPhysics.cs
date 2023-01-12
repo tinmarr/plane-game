@@ -16,13 +16,14 @@ public class AircraftPhysics : MonoBehaviour
 
     public float maxThrust = 10000f;
     [Tooltip("Percent thrust that the engines can change every second.")]
-    public float spool = 0.2f; // 0.2 corresponds to a 5 second idle to full throttle
-    float thrust;
-    float brakePercent;
+    [SerializeField] float spool = 0.2f; // 0.2 corresponds to a 5 second idle to full throttle // Not implemented yet
+    [SerializeField] float targetThrustChangeSpeed = 100f;
+    public float thrust, targetThrust;
+    public float brakePercent;
     public float brakeTorque = 100;
     float pitch, yaw, roll;
     public float flapAngle = 10;
-    bool flap = false;
+    public bool flap = false;
 
     Vector3 wind = Vector3.zero;
     Rigidbody rb;
@@ -54,23 +55,16 @@ public class AircraftPhysics : MonoBehaviour
         {
             Vector2 pitchRoll = input.actions.FindAction("attitude").ReadValue<Vector2>();
 
-            roll = pitchRoll.x;
-            pitch = pitchRoll.y;
-            yaw = input.actions.FindAction("yaw").ReadValue<float>();
+            roll = pitchRoll.x * 0.15f;
+            pitch = pitchRoll.y * 0.15f;
+            yaw = input.actions.FindAction("yaw").ReadValue<float>() * 0.15f;
             brakePercent = input.actions.FindAction("brake").ReadValue<float>();
 
-            // Thrust control
-            float targetThrust = input.actions.FindAction("thrust").ReadValue<float>() * maxThrust;
-            if (thrust <= targetThrust)
-            {
-                thrust += spool * maxThrust * Time.deltaTime;
-            }
-            else
-            {
-                thrust -= spool * maxThrust * Time.deltaTime;
-            }
-            thrust = Mathf.Clamp(thrust, 0, maxThrust);
-
+            if (input.actions.FindAction("thrust_up").IsPressed())
+                targetThrust += targetThrustChangeSpeed * Time.deltaTime;
+            else if (input.actions.FindAction("thrust_down").IsPressed())
+                targetThrust -= targetThrustChangeSpeed * Time.deltaTime;
+            targetThrust = Mathf.Clamp(targetThrust, 0, maxThrust);
         }
 
         foreach (AeroSurface controlSurface in controlSurfaces)
@@ -104,6 +98,7 @@ public class AircraftPhysics : MonoBehaviour
         steering.transform.localRotation = Quaternion.Euler(0, steeringAngle * yaw, 90);
         steering.steerAngle = steeringAngle * yaw;
 
+        thrust = targetThrust;
     }
 
 

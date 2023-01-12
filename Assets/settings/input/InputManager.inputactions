@@ -10,7 +10,7 @@
                     "type": "PassThrough",
                     "id": "e6e22f10-24de-462f-be5e-eaa3ecb142cb",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -25,18 +25,27 @@
                 },
                 {
                     "name": "brake",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "37861b6d-5e9c-452a-8fd7-974921dab2bb",
-                    "expectedControlType": "Analog",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "thrust",
+                    "name": "thrust_up",
                     "type": "PassThrough",
                     "id": "61d0b32a-2fdd-4306-93b3-f6bc68e50354",
-                    "expectedControlType": "Analog",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "thrust_down",
+                    "type": "PassThrough",
+                    "id": "8e654628-e291-47aa-a051-e872221a4899",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -176,7 +185,7 @@
                 {
                     "name": "",
                     "id": "b61dc71d-aae6-4cc2-b7ae-0d1e99725863",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/b",
                     "interactions": "",
                     "processors": "",
                     "groups": "keyboard",
@@ -187,7 +196,7 @@
                 {
                     "name": "",
                     "id": "ebc1a0ab-75c7-4370-83ef-2964be2f9270",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "controller",
@@ -242,7 +251,7 @@
                 {
                     "name": "negative",
                     "id": "03c74099-47f1-4eb7-9609-dab1a962f033",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "controller",
@@ -253,7 +262,7 @@
                 {
                     "name": "positive",
                     "id": "c9bbb947-4005-4d5f-9b3d-0fe4d9f11d4a",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "controller",
@@ -264,22 +273,22 @@
                 {
                     "name": "",
                     "id": "e895747b-9a88-42a4-8dde-48af13b0dd80",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/leftBracket",
                     "interactions": "",
                     "processors": "",
                     "groups": "keyboard",
-                    "action": "thrust",
+                    "action": "thrust_up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "7d8b36c6-5c8e-49ee-8e56-5dcae6dd1daa",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "thrust",
+                    "groups": "controller",
+                    "action": "thrust_up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -302,6 +311,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "flap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "285d982d-1b49-484f-9dab-72bcd3bd2b26",
+                    "path": "<Keyboard>/rightBracket",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keyboard",
+                    "action": "thrust_down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af2b33b4-144b-4dd8-9dbe-029227354701",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "controller",
+                    "action": "thrust_down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
