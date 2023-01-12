@@ -10,17 +10,13 @@ public class AircraftPhysics : MonoBehaviour
 
     public List<AeroSurface> aerodynamicSurfaces = null;
     List<AeroSurface> controlSurfaces = new List<AeroSurface>();
-    WheelCollider[] wheels = null;
-    public WheelCollider steering = null;
-    public float steeringAngle = 30f;
 
     public float maxThrust = 10000f;
     [Tooltip("Percent thrust that the engines can change every second.")]
     [SerializeField] float spool = 0.2f; // 0.2 corresponds to a 5 second idle to full throttle // Not implemented yet
     [SerializeField] float targetThrustChangeSpeed = 100f;
     public float thrust, targetThrust;
-    public float brakePercent;
-    public float brakeTorque = 100;
+    public float speedBrake = 0;
     float pitch, yaw, roll;
     public float flapAngle = 10;
     public bool flap = false;
@@ -41,7 +37,6 @@ public class AircraftPhysics : MonoBehaviour
                 controlSurfaces.Add(aerodynamicSurfaces[i]);
             }
         }
-        wheels = GetComponentsInChildren<WheelCollider>();
     }
 
     private void Start()
@@ -55,10 +50,10 @@ public class AircraftPhysics : MonoBehaviour
         {
             Vector2 pitchRoll = input.actions.FindAction("attitude").ReadValue<Vector2>();
 
-            roll = pitchRoll.x * 0.15f;
-            pitch = pitchRoll.y * 0.15f;
+            roll = pitchRoll.x * 0.3f;
+            pitch = pitchRoll.y * 0.5f;
             yaw = input.actions.FindAction("yaw").ReadValue<float>() * 0.15f;
-            brakePercent = input.actions.FindAction("brake").ReadValue<float>();
+            speedBrake = input.actions.FindAction("brake").ReadValue<float>();
 
             if (input.actions.FindAction("thrust_up").IsPressed())
                 targetThrust += targetThrustChangeSpeed * Time.deltaTime;
@@ -84,23 +79,12 @@ public class AircraftPhysics : MonoBehaviour
                     controlSurface.SetFlapAngle(flap ? flapAngle : 0);
                     break;
                 case ControlInputType.Brake:
-                    controlSurface.SetFlapAngle(brakePercent * controlSurface.maxAngle);
+                    controlSurface.SetFlapAngle(speedBrake * controlSurface.maxAngle);
                     break;
             }
         }
-
-        foreach (WheelCollider wheel in wheels)
-        {
-            wheel.brakeTorque = brakePercent * brakeTorque;
-            wheel.motorTorque = 0.1f;
-        }
-
-        steering.transform.localRotation = Quaternion.Euler(0, steeringAngle * yaw, 90);
-        steering.steerAngle = steeringAngle * yaw;
-
         thrust = targetThrust;
     }
-
 
 
     private void FixedUpdate()
