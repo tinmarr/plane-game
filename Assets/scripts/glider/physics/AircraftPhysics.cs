@@ -8,6 +8,7 @@ public class AircraftPhysics : MonoBehaviour
 {
     const float PREDICTION_TIMESTEP_FRACTION = 0.5f;
 
+    [SerializeField] Vector3 COM = Vector3.zero;
     public List<AeroSurface> aerodynamicSurfaces = null;
     List<AeroSurface> controlSurfaces = new List<AeroSurface>();
 
@@ -29,6 +30,7 @@ public class AircraftPhysics : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = COM;
         input = GetComponent<PlayerInput>();
         for (int i = 0; i < aerodynamicSurfaces.Count; i++)
         {
@@ -50,9 +52,9 @@ public class AircraftPhysics : MonoBehaviour
         {
             Vector2 pitchRoll = input.actions.FindAction("attitude").ReadValue<Vector2>();
 
-            roll = pitchRoll.x * 0.3f;
-            pitch = pitchRoll.y * 0.5f;
-            yaw = input.actions.FindAction("yaw").ReadValue<float>() * 0.15f;
+            roll = pitchRoll.x;
+            pitch = pitchRoll.y;
+            yaw = input.actions.FindAction("yaw").ReadValue<float>();
             speedBrake = input.actions.FindAction("brake").ReadValue<float>();
 
             if (input.actions.FindAction("thrust_up").IsPressed())
