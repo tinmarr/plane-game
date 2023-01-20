@@ -17,7 +17,7 @@ public static class AircraftGizmos
         if (settings.showCenterOfMass)
         {
             Gizmos.color = settings.comColor;
-            Vector3 com = phys.GetComponent<Rigidbody>().worldCenterOfMass;
+            Vector3 com = phys.COM;
             Gizmos.DrawWireSphere(com, 0.3f * settings.widthScale);
             DrawThinArrow(com, weight * scale, settings.comColor, 0.4f * settings.widthScale, 3);
         }

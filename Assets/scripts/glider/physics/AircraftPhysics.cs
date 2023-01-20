@@ -8,7 +8,7 @@ public class AircraftPhysics : MonoBehaviour
 {
     const float PREDICTION_TIMESTEP_FRACTION = 0.5f;
 
-    [SerializeField] Vector3 COM = Vector3.zero;
+    public Vector3 COM = Vector3.zero;
     public List<AeroSurface> aerodynamicSurfaces = null;
     List<AeroSurface> controlSurfaces = new List<AeroSurface>();
 
