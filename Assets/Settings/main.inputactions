@@ -1,0 +1,94 @@
+{
+    "name": "main",
+    "maps": [
+        {
+            "name": "flight",
+            "id": "7a4db943-8e22-4007-a822-38b59aae6410",
+            "actions": [
+                {
+                    "name": "pitch up",
+                    "type": "Button",
+                    "id": "0ed7750f-7e43-4bcd-8383-90fbd46758b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "pitch down",
+                    "type": "Button",
+                    "id": "cf16d67b-5e4b-4da6-86fe-99a79de0e176",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "throttle up",
+                    "type": "Button",
+                    "id": "2f46146a-0eff-4a01-ad9d-108de0e657f1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "throttle down",
+                    "type": "Button",
+                    "id": "e95282aa-9554-49e7-ae29-bfbcccc21af7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8a20fc8f-2be5-477d-b683-eb5d4fc9f2b7",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "pitch up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97d5821b-6c96-4a8b-b8aa-a4bb8da438a8",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "pitch down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ccf49f1d-af7b-49f0-8ecf-67bcc846cd89",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "throttle up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9bf79ea1-bd72-4ed0-be53-cd33c38780d1",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "throttle down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
